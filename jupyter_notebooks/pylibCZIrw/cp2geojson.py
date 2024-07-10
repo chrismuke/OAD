@@ -20,7 +20,7 @@ def seg_npy_to_geojson(seg_npy_path, geojson_path):
         if label == 0:  # Skip background
             continue
         # Find contours
-        _, contours, _ = cv2.findContours((masks == label).astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHA)
+        _, contours, _ = cv2.findContours((masks == label).astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         for contour in contours:
             # Convert contour to polygon and skip invalid polygons
             if contour.shape[0] < 3:
